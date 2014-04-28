@@ -8,15 +8,29 @@ class Bottles
   end
 
   def verse(num)
+    <<-VERSE
+#{quantize(num).capitalize} #{bottle_plural(num)} on the wall, #{quantize num} #{bottle_plural(num)}.
+#{what_now(num).capitalize}, #{quantize num-1} #{bottle_plural num-1} on the wall.
+VERSE
+  end
+  
+  def bottle_plural(num)
+    ((num == 1) ? "bottle" : "bottles") + " of beer"
+  end
+
+  def quantize(num)
+    num = num % 100
+    (num == 0) ? "no more" : num.to_s
+  end
+
+  def what_now(num)
     case num
     when 0
-      "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n"
+      "Go to the store and buy some more"
     when 1
-      "1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n"
-    when 2
-      "2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n"
+      "Take it down and pass it around"
     else
-      "#{num} bottles of beer on the wall, #{num} bottles of beer.\nTake one down and pass it around, #{num-1} bottles of beer on the wall.\n"
+      "Take one down and pass it around"
     end
   end
 end
