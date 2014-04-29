@@ -6,27 +6,47 @@ class Verse
   end
   
   def verse
-    "#{quantity(num).capitalize} #{container(num)} of beer on the wall, " +
-    "#{quantity(num)} #{container(num)} of beer.\n" +
+    "#{quantity.capitalize} #{container} of beer on the wall, " +
+    "#{quantity} #{container} of beer.\n" +
     "#{action}, " +
-    "#{quantity(num-1)} #{container(num-1)} of beer on the wall.\n"
+    "#{remaining_quantity} #{remaining_container} of beer on the wall.\n"
   end
 
   private
 
-  def quantity(mynum)
-    case mynum
+  def remaining_quantity
+    case(num - 1)
     when -1
       99.to_s
     when 0
       'no more'
     else
-      mynum.to_s
+      (num-1).to_s
+    end
+  end
+  
+  def quantity
+    case num
+    when -1
+      99.to_s
+    when 0
+      'no more'
+    else
+      num.to_s
     end
   end
 
-  def container(mynum)
-    case mynum
+  def remaining_container    
+    case(num - 1)
+    when 1
+      'bottle'
+    else
+      'bottles'
+    end
+  end
+
+  def container
+    case num
     when 1
       'bottle'
     else
