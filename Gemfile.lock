@@ -34,6 +34,8 @@ GEM
     guard-minitest (2.2.0)
       guard (~> 2.0)
       minitest (>= 3.0)
+    guard-shell (0.6.1)
+      guard (>= 1.1.0)
     listen (2.7.3)
       celluloid (>= 0.15.2)
       celluloid-io (>= 0.15.0)
@@ -66,6 +68,7 @@ DEPENDENCIES
   aruba
   guard
   guard-minitest
+  guard-shell
   minitest (~> 5.2)
   rake
   rb-fsevent

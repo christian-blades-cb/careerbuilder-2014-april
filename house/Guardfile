@@ -1,4 +1,12 @@
-guard :minitest do
-  watch(%r{^test/(.*)\/?(.*)_test\.rb$})
-  watch(%r{^lib/(.*/)?([^/]+)\.rb$})     { "test/house_test.rb" }
+group :test, :default  do
+  guard :minitest do
+    watch(%r{^test/(.*)\/?(.*)_test\.rb$})
+    watch(%r{^lib/(.*/)?([^/]+)\.rb$})     { "test/house_test.rb" }
+  end
+end
+
+group :recite do
+  guard :shell do
+    watch(%r{lib/(.*).rb}) {`bin/house` }
+  end
 end
