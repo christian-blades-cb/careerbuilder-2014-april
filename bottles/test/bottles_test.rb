@@ -1,6 +1,6 @@
-gem 'minitest', '~> 5.3'
+#gem 'minitest', '~> 5.3'
 require 'minitest/autorun'
-require 'minitest/pride'
+# require 'minitest/pride'
 require_relative '../lib/bottles'
 
 class BottlesTest < Minitest::Test
@@ -48,6 +48,22 @@ No more bottles of beer on the wall, no more bottles of beer.
 Go to the store and buy some more, 99 bottles of beer on the wall.
     VERSE
     assert_equal expected, bottles.verse(0)
+  end
+
+  def test_verse_7
+    expected = <<-VERSE
+7 bottles of beer on the wall, 7 bottles of beer.
+Take one down and pass it around, 1 six-pack of beer on the wall.
+VERSE
+    assert_equal expected, bottles.verse(7)
+  end
+
+  def test_verse_6
+    expected = <<-VERSE
+1 six-pack of beer on the wall, 1 six-pack of beer.
+Take one down and pass it around, 5 bottles of beer on the wall.
+VERSE
+    assert_equal expected, bottles.verse(6)
   end
 
   def test_a_couple_verses
@@ -354,9 +370,9 @@ Take one down and pass it around, 8 bottles of beer on the wall.
 Take one down and pass it around, 7 bottles of beer on the wall.
 
 7 bottles of beer on the wall, 7 bottles of beer.
-Take one down and pass it around, 6 bottles of beer on the wall.
+Take one down and pass it around, 1 six-pack of beer on the wall.
 
-6 bottles of beer on the wall, 6 bottles of beer.
+1 six-pack of beer on the wall, 1 six-pack of beer.
 Take one down and pass it around, 5 bottles of beer on the wall.
 
 5 bottles of beer on the wall, 5 bottles of beer.

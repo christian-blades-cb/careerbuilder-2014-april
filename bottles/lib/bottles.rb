@@ -1,3 +1,5 @@
+require 'forwardable'
+
 class Bottles
   def song
     verses(99, 0)
@@ -13,6 +15,9 @@ class Bottles
 end
 
 class Verse
+  extend Forwardable
+  
+  def_delegators :@variant, :current_quantity, :current_container, :action, :remaining_quantity, :remaining_container
   attr_reader :num, :variant
 
   def initialize(num)
@@ -35,30 +40,6 @@ class Verse
     rescue
       Variant
     end.new(num)
-  end
-
-  def current_quantity
-    variant.current_quantity
-  end
-
-  def remaining_quantity
-    variant.remaining_quantity
-  end
-
-  def current_container
-    variant.current_container
-  end
-
-  def remaining_container
-    variant.remaining_container
-  end
-
-  def action
-    variant.action
-  end
-
-  def pronoun
-    variant.pronoun
   end
 end
 
@@ -88,6 +69,8 @@ class Variant
   def action
     "Take #{pronoun} down and pass it around"
   end
+
+  private
 
   def pronoun
     'one'
@@ -127,5 +110,31 @@ end
 class Variant2 < Variant
   def remaining_container
     'bottle'
+  end
+end
+
+class Variant6 < Variant
+  def current_container
+    'six-pack'
+  end
+
+  def current_quantity
+    1.to_s
+  end
+
+  private
+  
+  def pronoun
+    'one'
+  end  
+end
+
+class Variant7 < Variant
+  def remaining_quantity
+    1.to_s
+  end
+
+  def remaining_container
+    'six-pack'
   end
 end
